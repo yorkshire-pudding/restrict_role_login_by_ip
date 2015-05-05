@@ -33,12 +33,14 @@ function restrict_role_login_by_ip_user_login($edit, $account) {
     $ip2check = $_SERVER[$header];
 
     $ipaddresses = explode(";", variable_get('restrict_role_login_by_ip_header_restriction', ''));
-
-    $should_restrict = 0;
+    
+    //Assume all ips are blacklisted. Change this to 0 if the current ip falls in whitelist.
+    $should_restrict = 1;
     // Check each ip address individually
     foreach ($ipaddresses as $ipaddress) {
       if (_restrict_role_login_by_ip_cidrcheck($ip2check, $ipaddress)) {
-        $should_restrict = 1;
+        //ip found to be from whitelist
+        $should_restrict = 0;
         break;
       }
     }
