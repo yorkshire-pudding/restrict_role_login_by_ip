@@ -14,7 +14,7 @@ function restrict_role_login_by_ip_form($form, &$form_state) {
   $user_roles = user_roles(TRUE); // Get all roles except anonymous
   unset($user_roles[array_search(t('authenticated user'), $user_roles)]); // Remove default authenticated user role
 
-  $form['restrict_role_login_by_ip_header '] = array(
+  $form['restrict_role_login_by_ip_header'] = array(
     '#type' => 'textfield',
     '#title' => t('Header to check'),
     '#default_value' => variable_get('restrict_role_login_by_ip_header', 'REMOTE_ADDR'),
