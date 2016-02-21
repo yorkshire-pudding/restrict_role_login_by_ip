@@ -1,0 +1,7 @@
+name: Restrict Role Login By IP
+type: module
+description: 'Enables limiting user login by roles by Ip addresses.'
+package: Access control
+version: VERSION
+core: 8.x
+configure: restrict_role_login_by_ip.settings
