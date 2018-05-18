@@ -41,7 +41,7 @@ function restrict_role_login_by_ip_user_login($account) {
       user_logout();
       $response = new RedirectResponse(\Drupal::url('user.login'));
       $response->send();
-      drupal_set_message(t('You are not allowed to login from this IP address. Contact Site Administrator.'), "error");
+      \Drupal::messenger()->addError(t('You are not allowed to login from this IP address. Contact Site Administrator.'));
       return;
     }
   }
