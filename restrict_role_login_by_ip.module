@@ -6,6 +6,7 @@
  */
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_user_login().
@@ -39,10 +40,9 @@ function restrict_role_login_by_ip_user_login($account) {
         unset($_GET['destination']);
       }
       user_logout();
-      $response = new RedirectResponse(\Drupal::url('user.login'));
+      $url = Url::fromRoute('user.login', [], ['query' => ['logout' => 'restrict']]);
+      $response = new RedirectResponse($url->toString());
       $response->send();
-      \Drupal::messenger()->addError(t('You are not allowed to login from this IP address. Contact Site Administrator.'));
-      return;
     }
   }
 }
