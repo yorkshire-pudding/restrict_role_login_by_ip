@@ -12,7 +12,7 @@ use Drupal\Core\Url;
  * Implements hook_user_login().
  */
 function restrict_role_login_by_ip_user_login($account) {
-
+  $roles_to_restrict = [];
   $config = \Drupal::config('restrict_role_login_by_ip.settings');
   $roles_to_restrict = $config->get('restrict_role_login_by_ip_header_roles');
   $restriction_applies = count(array_intersect($account->getRoles(), $roles_to_restrict));
